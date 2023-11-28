@@ -40,7 +40,7 @@ public static class MaxCommonSubgraph
         }
         Console.WriteLine($"({L[0].Item1}, {L[0].Item2})");
 
-        var maxClique = MaxClique.FindExact(C, Math.Min(A.GetLength(0), B.GetLength(0)));
+        var maxClique = BrutalMaxClique.FindExact(C, Math.Min(A.GetLength(0), B.GetLength(0)));
         var mapping = maxClique.Select(x => L[x]);
 
         Console.WriteLine("A subgraph vertices:");

@@ -1,6 +1,6 @@
 ﻿namespace TAIO;
 
-public class MaxClique
+public class BrutalMaxClique
 {
     /// <summary>
     /// Finds exact solution for the maximum clique problem using brute-force algorithm.

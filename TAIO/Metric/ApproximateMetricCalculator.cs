@@ -35,10 +35,10 @@ public class ApproximateMetricCalculator : MetricCalculator
 
     private static double GetValueAtCellHeuristic(Graph g1, Graph g2, int row, int col)
     {
-        const double alpha = 0.8;
-        const double edgeDeletionCost = 3;
+        const double alpha = 0.5;
+        const double edgeDeletionCost = 2.0;
 
-        double VertexSubstitutionCost(int u, int v) => alpha * Math.Pow(u - v, 2);
+        double VertexSubstitutionCost(int u, int v) => alpha * Math.Pow(Math.Abs(u - v), 3);
         double EdgeSubstitutionCost((int u, int v) p, (int u, int v) q) => (1 - alpha) * Math.Abs(g1.GetWeight(p.u, p.v) - g2.GetWeight(q.u, q.v));
         double EdgeDeletionCost((int u, int v) p, Graph g) => (1 - alpha) * g.GetWeight(p.u, p.v) * edgeDeletionCost;
 

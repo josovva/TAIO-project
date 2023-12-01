@@ -13,30 +13,32 @@ public static class GraphDisplayer
     {
         Console.ForegroundColor = DEFAULT_COLOR;
 
-        Console.Write($"    | ");
+        Console.Write($"     | ");
         for (int i = 0; i < g.NumberOfVertices; i++)
         {
             if (solutionVertices.Contains(i))
             {
                 Console.ForegroundColor = SOLUTION_VERTEX_COLOR;
 
-                Console.Write($"{i} ");
+                Console.Write(i < 10 ? $" {i} " : $"{i} ");
 
                 Console.ForegroundColor = DEFAULT_COLOR;
             }
             else
             {
-                Console.Write($"{i} ");
+                Console.Write(i < 10 ? $" {i} " : $"{i} ");
             }
         }
         Console.WriteLine();
 
-        Console.Write($" {UNDERLINE}   |");
+        Console.Write($"  {UNDERLINE}   |");
         for (int i = 0; i < g.NumberOfVertices; i++)
         {
-            Console.Write("  ");
+            Console.Write("   ");
         }
         Console.WriteLine(RESET_UNDERLINE);
+
+        Console.ForegroundColor = DEFAULT_COLOR;
 
         for (int i = 0; i < g.NumberOfVertices; i++)
         {
@@ -44,13 +46,13 @@ public static class GraphDisplayer
             {
                 Console.ForegroundColor = SOLUTION_VERTEX_COLOR;
 
-                Console.Write($" {i}");
+                Console.Write(i < 10 ? $"  {i}" : $" {i}");
 
                 Console.ForegroundColor = DEFAULT_COLOR;
             }
             else
             {
-                Console.Write($" {i}");
+                Console.Write(i < 10 ? $"  {i}" : $" {i}");
             }
 
             Console.Write("  | ");
@@ -60,19 +62,19 @@ public static class GraphDisplayer
                 var weight = g.GetWeight(i, j);
                 if (weight == 0)
                 {
-                    Console.Write($"  ");
+                    Console.Write($"   ");
                 }
                 else if (solutionVertices.Contains(i) && solutionVertices.Contains(j))
                 {
                     Console.ForegroundColor = SOLUTION_EDGE_COLOR;
 
-                    Console.Write($"{weight} ");
+                    Console.Write(weight < 10 ? $" {weight} " : $"{weight} ");
 
                     Console.ForegroundColor = DEFAULT_COLOR;
                 }
                 else
                 {
-                    Console.Write($"{weight} ");
+                    Console.Write(weight < 10 ? $" {weight} " : $"{weight} ");
                 }
             }
             Console.WriteLine();

@@ -12,7 +12,7 @@ public static class GraphDisplayer
     /// <summary>
     /// Max clique problem
     /// </summary>
-    public static void DisplaySolution(this Graph g1, List<int> solutionVertices, int fatness)
+    public static void DisplaySolution(this Graph g1, List<int> solutionVertices, int l, double porosity)
     {
         Console.WriteLine();
 
@@ -73,7 +73,7 @@ public static class GraphDisplayer
                 }
                 else if (solutionVertices.Contains(i) && solutionVertices.Contains(j))
                 {
-                    var solutionWeight = Math.Min(weight, fatness);
+                    var solutionWeight = Math.Min(weight, l);
 
                     var col = $"|{weight - solutionWeight}";
                     var s = $"{solutionWeight}{col}".PadLeft(7);
@@ -95,6 +95,10 @@ public static class GraphDisplayer
             Console.WriteLine();
         }
         Console.WriteLine();
+
+        var k = solutionVertices.Count;
+        Console.WriteLine($"Liczba łuków pustych: {porosity * l * k * (k - 1) / (1 + porosity)}");
+        Console.WriteLine($"Liczba łuków w pełnej klice (k={k}, l={l}): {l * k * (k - 1)}");
     }
 
     /// <summary>

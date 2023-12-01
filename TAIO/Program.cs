@@ -1,20 +1,20 @@
 ﻿using TAIO;
-using TAIO.CommonSubgraph;
+using TAIO.GeneticAlg;
 
 int[,] A =
 {
-    { 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    { 100, 0, 100, 100, 0, 0, 0, 0, 0, 0, 0, 0 },
-    { 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-    { 0, 100, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0 },
-    { 0, 0, 0, 100, 0, 100, 100, 100, 100, 0, 0, 0 },
-    { 0, 0, 0, 0, 100, 0, 100, 0, 0, 0, 0, 0 },
-    { 0, 0, 0, 0, 100, 100, 0, 100, 0, 100, 0, 0 },
-    { 0, 0, 0, 0, 100, 0, 100, 0, 100, 100, 0, 0 },
-    { 0, 0, 0, 0, 100, 0, 0, 100, 0, 100, 100, 0 },
-    { 0, 0, 0, 0, 0, 0, 100, 100, 100, 0, 0, 100 },
-    { 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 100 },
-    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 100, 0 },
+    { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    { 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 },
+    { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    { 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0 },
+    { 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0 },
+    { 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0 },
+    { 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0 },
+    { 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1 },
+    { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1 },
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0 },
 };
 
 int[,] B =
@@ -86,27 +86,26 @@ int[,] B =
 //    { 0, 0, 0, 0, 1, 0},
 //};
 
-var gA = new Graph(A);
-var gB = new Graph(B);
+#region Maximum common subgraph
 
-var mapping = MaxCommonSubgraph.FindApprox(gA, gB);
+//var gA = new Graph(A);
+//var gB = new Graph(B);
 
-gA.DisplaySolution(gB, mapping);
-gB.DisplaySolution(gA, mapping.ToDictionary(x => x.Value, y => y.Key));
+//var mapping = MaxCommonSubgraph.FindApprox(gA, gB);
 
-//var n = A.GetLength(0);
-//var maxEdgeWeight = Enumerable.Range(0, n * n).Aggregate(0, (y, x) =>
-//{
-//    var temp = A[x / n, x % n];
-//    return y < temp ? temp : y;
-//});
+//gA.DisplaySolution(gB, mapping);
+//gB.DisplaySolution(gA, mapping.ToDictionary(x => x.Value, y => y.Key));
 
-//var test = new TAIO.GeneticAlg.IntermediateGraph(A);
-//(var porosity, var clique) = TAIO.GeneticAlg.MaxClique.Calculate(test, 1, 0, (genome) => genome.NumberOfVertices + (double)genome.TotalEdgeWeight / (n * (n - 1) * maxEdgeWeight));
+#endregion
 
-//foreach (var v in clique)
-//{
-//    Console.Write($"{v} ");
-//}
-//Console.Write("\n");
-//Console.WriteLine($"Porosity {porosity}");
+#region Maximum clique
+
+var l = 1;
+var p = 0.5;
+
+(var porosity, var clique) = MaxClique.Calculate(new IntermediateGraph(A), l, p, (genome) => genome.NumberOfVertices);
+
+var g = new Graph(A);
+g.DisplaySolution(clique, l, porosity);
+
+#endregion

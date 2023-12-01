@@ -4,29 +4,17 @@ namespace TAIO.CommonSubgraph;
 
 public static class MaxCommonSubgraph
 {
-    public static void FindExact(Graph a, Graph b)
+    public static Dictionary<int, int> FindExact(Graph a, Graph b)
     {
         CreateCorrespondanceMatrix(a, b, out var L, out var c);
 
         var maxClique = BrutalMaxClique.FindExact(c, Math.Min(a.NumberOfVertices, b.NumberOfVertices));
         var mapping = maxClique.Select(x => L[x]);
 
-        Console.WriteLine("A subgraph vertices:");
-        foreach (var v in mapping.Select(x => x.Item1))
-        {
-            Console.Write(v + " ");
-            Console.WriteLine();
-        }
-
-        Console.WriteLine("B subgraph vertices:");
-        foreach (var v in mapping.Select(x => x.Item2))
-        {
-            Console.Write(v + " ");
-            Console.WriteLine();
-        }
+        return mapping.ToDictionary(x => x.Item1, y => y.Item2);
     }
 
-    public static (List<int> aVertices, List<int> bVertices) FindApprox(Graph a, Graph b)
+    public static Dictionary<int, int> FindApprox(Graph a, Graph b)
     {
         CreateCorrespondanceMatrix(a, b, out var L, out var c);
 
@@ -45,7 +33,7 @@ public static class MaxCommonSubgraph
         var maxClique = MaxClique.Calculate(new(c.AdjustmentMatrix), 1, 0, (genome) => genome.NumberOfVertices + (double)genome.TotalEdgeWeight / (n * (n - 1) * maxEdgeWeight));
         var mapping = maxClique.Item2.Select(x => L[x]).ToList();
 
-        return (mapping.Select(x => x.Item1).ToList(), mapping.Select(x => x.Item2).ToList());
+        return mapping.ToDictionary(x => x.Item1, y => y.Item2);
     }
 
     private static bool AreCompatible(Graph A, Graph B, (int i, int j) map1, (int k, int l) map2)

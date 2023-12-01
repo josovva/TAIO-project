@@ -26,7 +26,7 @@ public static class MaxCommonSubgraph
         }
     }
 
-    public static void FindApprox(Graph a, Graph b)
+    public static (List<int> aVertices, List<int> bVertices) FindApprox(Graph a, Graph b)
     {
         CreateCorrespondanceMatrix(a, b, out var L, out var c);
 
@@ -45,21 +45,7 @@ public static class MaxCommonSubgraph
         var maxClique = MaxClique.Calculate(new(c.AdjustmentMatrix), 1, 0, (genome) => genome.NumberOfVertices + (double)genome.TotalEdgeWeight / (n * (n - 1) * maxEdgeWeight));
         var mapping = maxClique.Item2.Select(x => L[x]).ToList();
 
-        var aMappings = mapping.Select(x => x.Item1).ToList();
-        Console.WriteLine("A subgraph vertices:");
-        foreach (var v in aMappings)
-        {
-            Console.Write(v + " ");
-            Console.WriteLine();
-        }
-
-        var bMappings = mapping.Select(x => x.Item2).ToList();
-        Console.WriteLine("B subgraph vertices:");
-        foreach (var v in bMappings)
-        {
-            Console.Write(v + " ");
-            Console.WriteLine();
-        }
+        return (mapping.Select(x => x.Item1).ToList(), mapping.Select(x => x.Item2).ToList());
     }
 
     private static bool AreCompatible(Graph A, Graph B, (int i, int j) map1, (int k, int l) map2)

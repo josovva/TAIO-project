@@ -86,7 +86,13 @@ int[,] B =
 //    { 0, 0, 0, 0, 1, 0},
 //};
 
-MaxCommonSubgraph.FindApprox(new Graph(A), new Graph(B));
+var gA = new Graph(A);
+var gB = new Graph(B);
+
+var (aVertices, bVertices) = MaxCommonSubgraph.FindApprox(gA, gB);
+
+gA.DisplaySolution(aVertices);
+gB.DisplaySolution(bVertices);
 
 //var n = A.GetLength(0);
 //var maxEdgeWeight = Enumerable.Range(0, n * n).Aggregate(0, (y, x) =>

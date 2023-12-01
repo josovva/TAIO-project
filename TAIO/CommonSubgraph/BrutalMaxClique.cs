@@ -10,7 +10,7 @@ public class BrutalMaxClique
     /// <param name="A"></param>
     /// <param name="maxClique"></param>
     /// <returns></returns>
-    public static int[] FindExact(Graph g, int? maxClique = null)
+    public static List<int> FindExact(Graph g, int? maxClique = null)
     {
         var combinations = GetCombination(g.NumberOfVertices, maxClique).ToList();
         combinations.Sort(new ListComparison());
@@ -46,7 +46,7 @@ public class BrutalMaxClique
             }
         }
 
-        return result.Item1;
+        return result.Item1.ToList();
     }
 
     /// <summary>

@@ -1,4 +1,6 @@
-﻿namespace TAIO;
+﻿using TAIO.CommonSubgraph.Utils;
+
+namespace TAIO.CommonSubgraph;
 
 public class BrutalMaxClique
 {
@@ -8,9 +10,9 @@ public class BrutalMaxClique
     /// <param name="A"></param>
     /// <param name="maxClique"></param>
     /// <returns></returns>
-    public static int[] FindExact(int[][] A, int? maxClique = null)
+    public static int[] FindExact(Graph g, int? maxClique = null)
     {
-        var combinations = GetCombination(A.Length, maxClique).ToList();
+        var combinations = GetCombination(g.NumberOfVertices, maxClique).ToList();
         combinations.Sort(new ListComparison());
 
         var result = (Array.Empty<int>(), 0);
@@ -21,15 +23,15 @@ public class BrutalMaxClique
 
             foreach (var i in subgraph)
             {
-                foreach (var j in subgraph.Where(j => j != i))
+                foreach (var j in subgraph.Where(j => i != j))
                 {
-                    if (A[i][j] == 0)
+                    if (g.GetWeight(i, j) == 0)
                     {
                         isClique = false;
                         break;
                     }
 
-                    edges += A[i][j];
+                    edges += g.GetWeight(i, j);
                 }
 
                 if (!isClique)

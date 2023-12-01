@@ -1,5 +1,5 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
+using System.Diagnostics;
 
 namespace TAIO.GeneticAlg
 {
@@ -12,6 +12,26 @@ namespace TAIO.GeneticAlg
         public int Order { get; set; }
 
         public int Length => Genes.Length;
+
+        public int TotalEdgeWeight
+        {
+            get
+            {
+                var sum = 0;
+
+                foreach (var u in this)
+                {
+                    Debug.Assert(BaseGraph[u, u] == 0, "Should be always zero");
+
+                    foreach (var v in this)
+                    {
+                        sum += BaseGraph[u, v];
+                    }
+                }
+
+                return sum;
+            }
+        }
 
         public double Porosity
         {
@@ -151,7 +171,7 @@ namespace TAIO.GeneticAlg
         public void TrackEmptyArches()
         {
             EmptyArches.Clear();
-            foreach(var u_vertex in this)
+            foreach (var u_vertex in this)
             {
                 foreach (var v_vertex in this)
                 {

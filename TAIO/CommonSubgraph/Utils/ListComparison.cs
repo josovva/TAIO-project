@@ -1,4 +1,4 @@
-﻿namespace TAIO;
+﻿namespace TAIO.CommonSubgraph.Utils;
 
 public class ListComparison : IComparer<List<int>>
 {

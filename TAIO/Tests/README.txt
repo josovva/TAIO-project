@@ -1,5 +1,12 @@
 Opis poszczególnych przykładów
 
+========================   Clique   ========================
+
+8. Losowy graf o 10 wierzchołkach zawierający K_6_3 klikę.
+9. Losowy graf o 17 wierzchołkach zawierający K_7_3 klikę.
+10. Losowy graf o 25 wierzchołkach zawierający K_20_8 klikę.
+
+
 ======================== Metric/MCS ========================
 
 1. Obydwa multigrafy takie same.

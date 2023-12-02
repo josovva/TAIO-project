@@ -10,41 +10,50 @@ namespace TAIO.Parsers
     {
         public static Graph[] ParseFile(string fileName)
         {
-            string[] lines = File.ReadAllLines(fileName);
-
-            int numberOfGraphs = int.Parse(lines[0]);
-            int currentIndex = 1;
-            Graph[] graphs = new Graph[numberOfGraphs];
-
-            for (int graphIndex = 0; graphIndex < numberOfGraphs; graphIndex++)
+            try
             {
-                int size = int.Parse(lines[currentIndex]);
-                currentIndex++;
+                string[] lines = File.ReadAllLines(fileName);
 
-                int[,] matrix = new int[size, size];
+                int numberOfGraphs = int.Parse(lines[0]);
+                int currentIndex = 1;
+                Graph[] graphs = new Graph[numberOfGraphs];
 
-                for (int i = 0; i < size; i++)
+                for (int graphIndex = 0; graphIndex < numberOfGraphs; graphIndex++)
                 {
-                    string[] rowValues = lines[currentIndex].Split(' ');
+                    int size = int.Parse(lines[currentIndex]);
                     currentIndex++;
 
-                    for (int j = 0; j < size; j++)
+                    int[,] matrix = new int[size, size];
+
+                    for (int i = 0; i < size; i++)
                     {
-                        matrix[i, j] = int.Parse(rowValues[j]);
+                        string[] rowValues = lines[currentIndex].Split(' ');
+                        currentIndex++;
+
+                        for (int j = 0; j < size; j++)
+                        {
+                            matrix[i, j] = int.Parse(rowValues[j]);
+                        }
                     }
-                }
 
-                graphs[graphIndex] = new Graph(matrix);
+                    graphs[graphIndex] = new Graph(matrix);
 
-                while (currentIndex < lines.Length && !string.IsNullOrWhiteSpace(lines[currentIndex]))
-                {
+                    while (currentIndex < lines.Length && !string.IsNullOrWhiteSpace(lines[currentIndex]))
+                    {
+                        currentIndex++;
+                    }
+
                     currentIndex++;
                 }
 
-                currentIndex++;
+                return graphs;
+            }
+            catch
+            {
+                Console.WriteLine($"Couldn't parse multigraph given in the {fileName} file.");
             }
 
-            return graphs;
+            return Array.Empty<Graph>();
         }
     }
 }

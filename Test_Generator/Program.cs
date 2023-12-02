@@ -1,12 +1,12 @@
 ﻿using System.Text;
 using TAIO;
-using TAIO.GeneticAlg;
+using TAIO.MaxCliqueAlg;
 using Test_Generator;
 
-var n = 10;
-var k = 6;
-var l = 3;
-var p = 0.1;
+var n = 50;
+var k = 8;
+var l = 4;
+var p = 0;
 
 var g = new int[n, n];
 
@@ -51,7 +51,7 @@ result.DisplaySolution(clique, l, porosity);
 
 Console.ReadKey();
 
-using var writer = new StreamWriter("./../../../../TAIO/Tests/Clique_Test1.txt", false);
+using var writer = new StreamWriter("./../../../../TAIO/kuba2.txt", false);
 writer.WriteLine(1);
 writer.WriteLine(n);
 for (var i = 0; i < n; ++i)

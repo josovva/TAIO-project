@@ -59,17 +59,17 @@ public static class AlgorithmRunner
         if (g is null)
             return;
         
-        if (options.RunApproximate)
+        if (options.RunExact)
         {
-            // you can replace temp fitness functio
-            var intermediateG = new IntermediateGraph(g.AdjustmentMatrix);
-            var (porosity, clique) = MaxClique.Calculate(intermediateG, options.L, options.Porosity, Size.FitnessFunctionMaxClique);
-
+            var (porosity, clique) = BrutalMaxClique.Calcuate(g.AdjustmentMatrix, options.L, options.Porosity);
             g.DisplaySolution(clique, options.L, porosity);
         }
         else
         {
-            var (porosity, clique) = BrutalMaxClique.Calcuate(g.AdjustmentMatrix, options.L, options.Porosity);
+            // you can replace temp fitness function
+            var intermediateG = new IntermediateGraph(g.AdjustmentMatrix);
+            var (porosity, clique) = MaxClique.Calculate(intermediateG, options.L, options.Porosity, Size.FitnessFunctionMaxClique);
+
             g.DisplaySolution(clique, options.L, porosity);
         }
     }
@@ -82,7 +82,7 @@ public static class AlgorithmRunner
         if (g is null || h is null)
             return;
 
-        var result = options.RunApproximate ? MaxCommonSubgraph.FindApprox(g, h) : MaxCommonSubgraph.FindExact(g, h);
+        var result = options.RunExact ? MaxCommonSubgraph.FindExact(g, h) : MaxCommonSubgraph.FindApprox(g, h);
 
         g.DisplaySolution(h, result);
         h.DisplaySolution(g, result.ToDictionary(x => x.Value, y => y.Key));

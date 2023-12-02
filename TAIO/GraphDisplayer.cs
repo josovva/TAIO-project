@@ -15,6 +15,12 @@ public static class GraphDisplayer
     public static void DisplaySolution(this Graph g1, List<int> solutionVertices, int l, double porosity)
     {
         Console.WriteLine();
+        Console.WriteLine("Objaśnienie wizualizacji:");
+        Console.WriteLine("1. Niebieski kolor oznacza wierzchołki i krawędzie należące do rozwiązania problemu.");
+        Console.WriteLine("2. Szary kolor oznacza pozostałe wierzchołki i krawędzie.");
+        Console.WriteLine("3. Zapis X|Y oznacza, że spośród X+Y krawędzi X z nich należy do rozwiązania problemu ");
+        Console.WriteLine("   oraz Y z nich nie należy do rozwiązania.");
+        Console.WriteLine();
 
         Console.ForegroundColor = DEFAULT_COLOR;
 
@@ -97,7 +103,8 @@ public static class GraphDisplayer
         Console.WriteLine();
 
         var k = solutionVertices.Count;
-        Console.WriteLine($"Liczba łuków pustych: {porosity * l * k * (k - 1) / (1 + porosity)}");
+        var empty = porosity * l * k * (k - 1) / (1 + porosity);
+        Console.WriteLine($"Liczba łuków pustych: {Math.Round(empty)}");
         Console.WriteLine($"Liczba łuków w pełnej klice (k={k}, l={l}): {l * k * (k - 1)}");
     }
 

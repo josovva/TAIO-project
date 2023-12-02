@@ -63,9 +63,9 @@ public static class AlgorithmRunner
         {
             // TODO: replace temp fitness function
             var intermediateG = new IntermediateGraph(g.AdjustmentMatrix);
-            var (_, clique) = MaxClique.Calculate(intermediateG, options.L, options.Porosity, genome => genome.NumberOfVertices);
+            var (porosity, clique) = MaxClique.Calculate(intermediateG, options.L, options.Porosity, genome => genome.NumberOfVertices);
 
-            g.DisplaySolution(clique, options.L, options.Porosity);
+            g.DisplaySolution(clique, options.L, porosity);
         }
         else
         {

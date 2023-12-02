@@ -33,7 +33,12 @@ namespace TAIO.MaxCliqueAlg
         public static (CliqueGenome, CliqueGenome) SelectParesntGenomes(Population base_population, Func<CliqueGenome, double> fitness_fun)
         {
             // roulette build
-            double fintess_sharing_fun(CliqueGenome genome) => fitness_fun(genome) / NicheSize(base_population, genome);
+            double fintess_sharing_fun(CliqueGenome genome)
+            {
+                var nominator = fitness_fun(genome);
+                var denominator = NicheSize(base_population, genome);
+                return nominator / denominator;
+            }
             int p1_idex = -1, p2_idex = -1;
 
             List<double> fitness_scores = base_population.Select(fintess_sharing_fun).ToList();

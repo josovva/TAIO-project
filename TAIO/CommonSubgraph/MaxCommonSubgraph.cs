@@ -30,7 +30,14 @@ public static class MaxCommonSubgraph
             }
         }
 
-        var maxClique = MaxClique.Calculate(new(c.AdjustmentMatrix), 1, 0, (genome) => genome.NumberOfVertices + (double)genome.TotalEdgeWeight / (n * (n - 1) * maxEdgeWeight));
+        double fitness_fun(CliqueGenome genome)
+        {
+            if (maxEdgeWeight == 0) return genome.NumberOfVertices;
+
+            return genome.NumberOfVertices + (double)genome.TotalEdgeWeight / (n * (n - 1) * maxEdgeWeight);
+        }
+
+        var maxClique = MaxClique.Calculate(new(c.AdjustmentMatrix), 1, 0, fitness_fun);
         var mapping = maxClique.Item2.Select(x => L[x]).ToList();
 
         return mapping.ToDictionary(x => x.Item1, y => y.Item2);

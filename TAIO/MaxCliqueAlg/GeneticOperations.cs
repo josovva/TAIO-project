@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Diagnostics;
 
-namespace TAIO.GeneticAlg
+namespace TAIO.MaxCliqueAlg
 {
     public class GeneticOperations
     {
@@ -11,8 +11,7 @@ namespace TAIO.GeneticAlg
         public static double ProbalilityOfGeneModification = 0.2d;
         public static int NrOfCrossingPoints = 2;
 
-
-        private static readonly double SimilarityRadius = 2; // TODO
+        private static readonly double SimilarityRadius = 2;
 
         public static void TryToMutateGenome(CliqueGenome genome)
         {

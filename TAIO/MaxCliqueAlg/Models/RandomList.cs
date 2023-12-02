@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace TAIO.GeneticAlg
+namespace TAIO.MaxCliqueAlg
 
 {
     public class RandomList : IEnumerable<Vertex>

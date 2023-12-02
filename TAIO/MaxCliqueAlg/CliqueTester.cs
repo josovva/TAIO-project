@@ -1,9 +1,8 @@
-﻿
-namespace TAIO
+﻿namespace TAIO.MaxCliqueAlg
 {
     public class CliqueTester
     {
-        public static bool IsThisCliqueCorrect(List<int> clique, int[,] matrix, int clique_order = 1, int porosity = 0)
+        public static bool IsThisCliqueCorrect(List<int> clique, int[,] matrix, ref double out_porosity, int clique_order = 1, double porosity = 0)
         {
             int empty_arches = 0;
             int non_empty_arches = 0;
@@ -20,7 +19,8 @@ namespace TAIO
                 }
             }
 
-            return (empty_arches / (double)non_empty_arches) <= porosity;
+            out_porosity = empty_arches / (double)non_empty_arches;
+            return empty_arches / (double)non_empty_arches <= porosity;
         }
     }
 }

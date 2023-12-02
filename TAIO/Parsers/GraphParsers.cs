@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Net.WebSockets;
 using System.Text;
 using System.Text.RegularExpressions;
-using TAIO.GeneticAlg;
+using TAIO.MaxCliqueAlg;
 
 namespace TAIO
 {

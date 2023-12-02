@@ -1,4 +1,4 @@
-﻿namespace TAIO.GeneticAlg
+﻿namespace TAIO.MaxCliqueAlg
 {
     public class IntermediateGraph
     {
@@ -14,6 +14,8 @@
         }
 
         private int[,] AdjustmentMatrix { get; set; }
+
+        public int MaxEdgeWeigh {  get; set; }
 
         public int this[int index_u, int index_v]
         {
@@ -62,6 +64,15 @@
             {
                 Mapping[neighbours[i].Item1] = i;
                 Unmapping[i] = neighbours[i].Item1;
+            }
+
+            for (var i = 0; i < NumberOfVertices; ++i)
+            {
+                for (var j = 0; j < NumberOfVertices; ++j)
+                {
+                    if (adjustmentMatrix[i, j] > MaxEdgeWeigh)
+                        MaxEdgeWeigh = adjustmentMatrix[i, j];
+                }
             }
         }
 

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Diagnostics;
 
-namespace TAIO.GeneticAlg
+namespace TAIO.MaxCliqueAlg
 {
     internal class IcreaseComparer : IComparer<CliqueGenome>
     {

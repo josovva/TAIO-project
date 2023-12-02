@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Diagnostics;
 
-namespace TAIO.GeneticAlg
+namespace TAIO.MaxCliqueAlg
 {
     public class CliqueGenome : IEnumerable<Vertex>, ICloneable
     {

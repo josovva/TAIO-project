@@ -1,4 +1,4 @@
-﻿using TAIO.GeneticAlg;
+﻿using TAIO.MaxCliqueAlg;
 
 namespace TAIO.CommonSubgraph;
 

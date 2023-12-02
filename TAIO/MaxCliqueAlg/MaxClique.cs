@@ -1,7 +1,7 @@
 ﻿
 using System.Runtime.CompilerServices;
 
-namespace TAIO.GeneticAlg
+namespace TAIO.MaxCliqueAlg
 {
     public class MaxClique
     {

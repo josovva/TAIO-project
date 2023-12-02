@@ -1,7 +1,7 @@
 ﻿
 using System.Diagnostics;
 
-namespace TAIO.GeneticAlg
+namespace TAIO.MaxCliqueAlg
 {
     public class LocalOptimisation
     {

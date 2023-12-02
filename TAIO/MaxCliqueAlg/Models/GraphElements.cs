@@ -1,5 +1,5 @@
 ﻿
-namespace TAIO.GeneticAlg
+namespace TAIO.MaxCliqueAlg
 {
     public struct Vertex
     {

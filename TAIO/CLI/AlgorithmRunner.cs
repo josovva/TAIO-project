@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using CommandLine;
 using TAIO.CommonSubgraph;
-using TAIO.GeneticAlg;
+using TAIO.MaxCliqueAlg;
 using TAIO.Metric;
 
 namespace TAIO.CLI;
@@ -61,16 +61,16 @@ public static class AlgorithmRunner
         
         if (options.RunApproximate)
         {
-            // TODO: replace temp fitness function
+            // you can replace temp fitness functio
             var intermediateG = new IntermediateGraph(g.AdjustmentMatrix);
-            var (porosity, clique) = MaxClique.Calculate(intermediateG, options.L, options.Porosity, genome => genome.NumberOfVertices);
+            var (porosity, clique) = MaxClique.Calculate(intermediateG, options.L, options.Porosity, Size.FitnessFunctionMaxClique);
 
             g.DisplaySolution(clique, options.L, porosity);
         }
         else
         {
-            // TODO: add exact algorithm execution
-            throw new NotImplementedException();
+            var (porosity, clique) = BrutalMaxClique.Calcuate(g.AdjustmentMatrix, options.L, options.Porosity);
+            g.DisplaySolution(clique, options.L, porosity);
         }
     }
 

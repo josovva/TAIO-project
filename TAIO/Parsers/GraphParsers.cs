@@ -87,7 +87,7 @@ namespace TAIO
                         i += 1;
 
                         SkipWhitespace(ln, ref i);
-                        i += 3;
+                        SkipLetters(ln, ref i);
                         yield return DISMACSTokenType.TEXT;
 
                         SkipWhitespace(ln, ref i);
@@ -150,6 +150,14 @@ namespace TAIO
 
             string number_string = str_build.ToString();
             CurrentNumber = int.Parse(number_string);
+        }
+
+        private void SkipLetters(string line, ref int idx)
+        {
+            while (idx < line.Length && (line[idx] >= 'A' && (line[idx] <= 'z')))
+            {
+                idx += 1;
+            }
         }
     }
 }

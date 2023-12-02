@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using CommandLine;
 using TAIO.CommonSubgraph;
 using TAIO.MaxCliqueAlg;
@@ -22,6 +23,9 @@ public static class AlgorithmRunner
 
     private static int RunAlgorithm(object obj)
     {
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
+
         switch (obj)
         {
             case MetricOptions m:
@@ -36,6 +40,9 @@ public static class AlgorithmRunner
             default:
                 return -1;
         }
+        
+        stopwatch.Stop();
+        Console.WriteLine($"Elapsed time [ms]: {stopwatch.ElapsedMilliseconds}");
 
         return 0;
     }
@@ -49,7 +56,7 @@ public static class AlgorithmRunner
             return;
 
         IMetricCalculator calculator = options.RunApproximate ? new ApproximateMetricCalculator() : new ExactMetricCalculator();
-        Console.WriteLine($"Calculated metric value: {calculator.Calculate(g, h)}");
+        //Console.WriteLine($"Calculated metric value: {calculator.Calculate(g, h)}");
     }
 
     private static void RunMaxCliqueAlgorithm(MaxCliqueOptions options)
@@ -62,7 +69,7 @@ public static class AlgorithmRunner
         if (options.RunExact)
         {
             var (porosity, clique) = BrutalMaxClique.Calcuate(g.AdjustmentMatrix, options.L, options.Porosity);
-            g.DisplaySolution(clique, options.L, porosity);
+            //g.DisplaySolution(clique, options.L, porosity);
         }
         else
         {
@@ -70,7 +77,7 @@ public static class AlgorithmRunner
             var intermediateG = new IntermediateGraph(g.AdjustmentMatrix);
             var (porosity, clique) = MaxClique.Calculate(intermediateG, options.L, options.Porosity, Size.FitnessFunctionMaxClique);
 
-            g.DisplaySolution(clique, options.L, porosity);
+            //g.DisplaySolution(clique, options.L, porosity);
         }
     }
 
@@ -84,7 +91,7 @@ public static class AlgorithmRunner
 
         var result = options.RunExact ? MaxCommonSubgraph.FindExact(g, h) : MaxCommonSubgraph.FindApprox(g, h);
 
-        g.DisplaySolution(h, result);
-        h.DisplaySolution(g, result.ToDictionary(x => x.Value, y => y.Key));
+        //g.DisplaySolution(h, result);
+        //h.DisplaySolution(g, result.ToDictionary(x => x.Value, y => y.Key));
     }
 }

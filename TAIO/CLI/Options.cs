@@ -11,7 +11,7 @@ public class MetricOptions
     [Option('h', Required = true, HelpText = "Path to the .txt file containing multigraph H.")]
     public string HPath { get; set; } = default!;
 
-    [Option('a', Required = false, Default = false, HelpText = "If specified, runs an approximate algorithm instead of a naive one.")]
+    [Option('a', Required = false, Default = false, HelpText = "If specified, runs an approximate algorithm instead of an exact one.")]
     public bool RunApproximate { get; set; }
 }
 
@@ -27,7 +27,7 @@ public class MaxCliqueOptions
     [Option('p', Required = false, Default = 0.0, HelpText = "Maximum porosity (ratio of empty arcs to non-empty arcs) of the found clique.")]
     public double Porosity { get; set; }
 
-    [Option('a', Required = false, Default = false, HelpText = "If specified, runs an approximate algorithm instead of a naive one.")]
+    [Option('a', Required = false, Default = false, HelpText = "If specified, runs an approximate algorithm instead of an exact one.")]
     public bool RunApproximate { get; set; }
 }
 
@@ -40,6 +40,6 @@ public class MaxCommonSubgraphOptions
     [Option('h', Required = true, HelpText = "Path to the .txt file containing multigraph H.")]
     public string HPath { get; set; } = default!;
 
-    [Option('a', Required = false, Default = false, HelpText = "If specified, runs an approximate algorithm instead of a naive one.")]
+    [Option('a', Required = false, Default = false, HelpText = "If specified, runs an approximate algorithm instead of an exact one.")]
     public bool RunApproximate { get; set; }
 }

@@ -2,7 +2,7 @@
 
 namespace TAIO.Metric;
 
-public class NaiveMetricCalculator : MetricCalculator
+public class ExactMetricCalculator : MetricCalculator
 {
     protected override int GetMinimumDistance(Graph g1, Graph g2)
     {

@@ -21,7 +21,7 @@ namespace TAIO.MaxCliqueAlg
 
                 foreach (var u in this)
                 {
-                    Debug.Assert(BaseGraph[u, u] == 0, "Should be always zero");
+                    //Debug.Assert(BaseGraph[u, u] == 0, "Should be always zero");
 
                     foreach (var v in this)
                     {

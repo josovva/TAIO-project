@@ -48,7 +48,7 @@ public static class AlgorithmRunner
         if (g is null || h is null)
             return;
 
-        IMetricCalculator calculator = options.RunApproximate ? new ApproximateMetricCalculator() : new ExactMetricCalculator();
+        IMetricCalculator calculator = options.RunExact ? new ExactMetricCalculator() : new ApproximateMetricCalculator();
         Console.WriteLine($"Calculated metric value: {calculator.Calculate(g, h)}");
     }
 

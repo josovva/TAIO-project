@@ -11,8 +11,8 @@ public class MetricOptions
     [Option('h', Required = true, HelpText = "Path to the .txt file containing multigraph H.")]
     public string HPath { get; set; } = default!;
 
-    [Option('a', Required = false, Default = false, HelpText = "If specified, runs an approximate algorithm instead of an exact one.")]
-    public bool RunApproximate { get; set; }
+    [Option('e', Required = false, Default = false, HelpText = "If specified, runs an exact algorithm instead of an approximate one.")]
+    public bool RunExact { get; set; }
 }
 
 [Verb("clique", HelpText = "Finds the maximum clique in the given multigraph.")]

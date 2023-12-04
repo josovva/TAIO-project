@@ -25,5 +25,5 @@ Opis poszczególnych przykładów
 7. Multigraf G złożony z dwóch rozłącznych klik, jedna Q_4_1, druga Q_4_3 (ale bez krawędzi między jedną parą wierzchołków).
    Multigraf H będący Q_4_3 kliką. Algorytm poprawnie mapuje na Q_4_1 klikę, rozpoznając brakującą krawędź.
 8. Dwa drzewa binarne pełne, jedno z krawędziami domyślnie skierowanymi od korzenia w dół, drugie z zamienionymi kierunkami.
-9. Multigraf G jest acykliczny, H jest cyklem C_5_5. Algorytm znajduje ścieżkę o 3 wierzchołkach.
-10. G to klika Q_5_5, H to multigraf złożony z 5 izolowanych wierzchołków. Wynikiem powinien być pusty multigraf.
+9. Multigraf G jest acykliczny, H jest cyklem C_5_5. Algorytm MCS znajduje ścieżkę o 3 wierzchołkach.
+10. G to klika Q_5_5, H to multigraf złożony z 5 izolowanych wierzchołków. Wynikiem dla problemu MCS powinien być multigraf o jednym wierzchołku.

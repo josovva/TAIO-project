@@ -42,8 +42,8 @@ public static class AlgorithmRunner
 
     private static void RunMetricAlgorithm(MetricOptions options)
     {
-        var g = Parsers.Parser.ParseFile(options.GPath).SingleOrDefault();
-        var h = Parsers.Parser.ParseFile(options.HPath).SingleOrDefault();
+        var g = Parsers.Parser.ParseFile(options.GPath).FirstOrDefault();
+        var h = Parsers.Parser.ParseFile(options.HPath).FirstOrDefault();
 
         if (g is null || h is null)
             return;
@@ -54,7 +54,7 @@ public static class AlgorithmRunner
 
     private static void RunMaxCliqueAlgorithm(MaxCliqueOptions options)
     {
-        var g = Parsers.Parser.ParseFile(options.GPath).SingleOrDefault();
+        var g = Parsers.Parser.ParseFile(options.GPath).FirstOrDefault();
 
         if (g is null)
             return;
@@ -76,8 +76,8 @@ public static class AlgorithmRunner
 
     private static void RunMaxCommonSubgraph(MaxCommonSubgraphOptions options)
     {
-        var g = Parsers.Parser.ParseFile(options.GPath).SingleOrDefault();
-        var h = Parsers.Parser.ParseFile(options.HPath).SingleOrDefault();
+        var g = Parsers.Parser.ParseFile(options.GPath).FirstOrDefault();
+        var h = Parsers.Parser.ParseFile(options.HPath).FirstOrDefault();
 
         if (g is null || h is null)
             return;

@@ -25,7 +25,10 @@ namespace TAIO.MaxCliqueAlg
 
                     foreach (var v in this)
                     {
-                        sum += BaseGraph[u, v];
+                        if (u != v)
+                        {
+                            sum += BaseGraph[u, v];
+                        }
                     }
                 }
 
